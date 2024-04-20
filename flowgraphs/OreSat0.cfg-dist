@@ -23,7 +23,7 @@ deviation=20000
 center_frequency=1265e6
 channel=0
 path=2
-hackrf_serial=0
+device_serial=0
 
 [tx_l_fast]
 bit_rate=120000
@@ -31,7 +31,7 @@ deviation=40000
 center_frequency=1265e6
 channel=0
 path=2
-hackrf_serial=0
+device_serial=0
 
 [tx_uhf]
 bit_rate=96000
@@ -39,7 +39,7 @@ deviation=24000
 center_frequency=436.5e6
 channel=0
 path=1
-hackrf_serial=0
+device_serial=0
 
 
 [edl_commands]
