@@ -120,7 +120,7 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    comment: ''
+    comment: For use with osmocom sink
     insert_phasing: 'True'
     length_tag_name: packet_len
     maxoutbuf: '0'
@@ -135,7 +135,7 @@ blocks:
     bus_structure: null
     coordinate: [568, 428.0]
     rotation: 0
-    state: enabled
+    state: bypassed
 - name: digital_gfsk_mod_0_0_0_0
   id: digital_gfsk_mod
   parameters:
@@ -154,7 +154,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [744, 268.0]
+    coordinate: [744, 260.0]
     rotation: 0
     state: enabled
 - name: digital_scrambler_bb_0_0_0_0
