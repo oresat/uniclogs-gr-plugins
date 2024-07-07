@@ -37,9 +37,10 @@ xxd -r -p <<<c4f53822000900e501 | nc -cu 127.0.0.1 10025
 * gr-osmosdr | gr-limesdr
 * [gr-gpredict-doppler](https://github.com/ghostop14/gr-gpredict-doppler) (optional)
 
-## Basic setup starting from a fresh install of Ubuntu Server 22.04.2 LTS
+## Basic setup starting from a fresh install of Ubuntu Server 22.04.4 LTS
 ```bash
-sudo apt install gnuradio gr-satellites gr-osmosdr cmake rtl-sdr hackrf && volk_profile
+# install radio specific package like uhd-host or hackrf described in sections below
+sudo apt install gnuradio gr-satellites gr-osmosdr cmake rtl-sdr && volk_profile
 git clone https://github.com/ghostop14/gr-gpredict-doppler
 mkdir gr-gpredict-doppler/build
 cd gr-gpredict-doppler/build/
@@ -53,10 +54,31 @@ make
 ```
 
 ## GPredict
-If you don't want to use GPredict for doppler correction, you can disable 5 blocks in the OreSat0.grc flowgraph rather than installing gr-gpredict. After opening the flowgraph with `gnuradio-companion OreSat0.grc`, look for and disable the 2 "GPredict Doppler" blocks and the 3 "Message Pair to Var" blocks connected to them.
+If you don't want to use GPredict for doppler correction, you can disable 5 blocks in the OreSat0.grc flowgraph rather than installing gr-gpredict. After opening the flowgraph with `gnuradio-companion OreSat0.grc`, look for and disable the 2 "GPredict Doppler" blocks and the 3 "Message Pair to Var" blocks connected to them. It is safe to leave gr-gpredict in even if you won't be using it.
+
+## USRP B200 specific setup
+```bash
+sudo apt install uhd-host
+sudo uhd_images_downloader
+```
+
+B200 serial numbers must be specified in the config file. Run `uhd_find_devices` to see the serial number of each connected device. Use your favorite editor to open `OreSat0.cfg` and find the `device_serial=` lines in the band sections. Example:
+
+```bash
+$ uhd_find_devices 2>&1 | grep serial
+    serial: 32C7DEB
+```
+
+Set the serial number in `OreSat0.cfg`. `device_serial` needs to be set in multiple sections:
+```ini
+device_serial=32C7DEB
+```
 
 ## HackRF specific setup
-If you will be using two HackRF radios, one for each transmit band, be sure to specify serial numbers in the config file. Run `hackrf_info` to see the serial number of each connected device. Use your favorite editor to open `OreSat0.cfg` and find the `hackrf_serial=` line in the `tx_` band sections. Any unique end of the serial number will do, but it is common to specify the last 4 bytes (8 hex characters). Example:
+```bash
+sudo apt install hackrf
+```
+If you will be using two HackRF radios, one for each transmit band, be sure to specify serial numbers in the config file. Run `hackrf_info` to see the serial number of each connected device. Use your favorite editor to open `OreSat0.cfg` and find the `device_serial=` line in the band sections. Any unique end of the serial number will do, but it is common to specify the last 4 bytes (8 hex characters). Example:
 
 ```bash
 $ hackrf_info | grep Serial
@@ -64,11 +86,14 @@ Serial number: 0000000000000000088869dc385c721b
 ```
 
 ```ini
-hackrf_serial=385c721b
+device_serial=385c721b
 ```
 
 ## Lime specific setup
 Skip this section if you don't intend to use a Lime SDR.
+```bash
+sudo apt install gr-limesdr limesuite
+```
 
 * Test the Lime Driver
    * Run `LimeQuickTest`
