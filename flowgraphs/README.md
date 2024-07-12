@@ -35,7 +35,7 @@ xxd -r -p <<<c4f53822000900e501 | nc -cu 127.0.0.1 10025
 * gnuradio 3.10
 * gr-satellites
 * gr-osmosdr | gr-limesdr
-* [gr-gpredict-doppler](https://github.com/ghostop14/gr-gpredict-doppler) (optional)
+* [gr-gpredict-doppler](https://github.com/ghostop14/gr-gpredict-doppler) (optional, but see GPredict section below)
 
 ## Basic setup starting from a fresh install of Ubuntu Server 22.04.4 LTS
 ```bash
