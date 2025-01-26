@@ -7,7 +7,7 @@ all: flowgraph05
 flowgraph: hier OreSat0.py OreSat0.cfg
 
 .PHONY: flowgraph05
-flowgraph05: hier OreSat05.py OreSat05.cfg
+flowgraph05: OreSat05.py OreSat05.cfg
 
 .PHONY: hier
 hier: hier/*.grc

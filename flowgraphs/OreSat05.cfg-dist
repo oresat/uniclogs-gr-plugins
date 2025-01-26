@@ -1,15 +1,14 @@
 [main]
 telemetry_host=localhost
 command_host=localhost
-tx_sample_rate=2e6
-samples_per_symbol=4
-morse_callsign=KJ7SAT
+device_serial=
 
 
 [rx]
 target_frequency=436.5e6
-sample_rate=1.92e6
-device_serial=0
+sample_rate=2e6
+# gain
+# iq_filename
 
 [rx_beacon]
 bit_rate=9600
@@ -20,24 +19,12 @@ bit_rate=96000
 
 [tx_l]
 bit_rate=60000
-deviation=20000
 center_frequency=1265e6
-channel=0
-path=2
-device_serial=0
 
 [tx_l_fast]
 bit_rate=120000
-deviation=40000
 center_frequency=1265e6
-channel=0
-path=2
-device_serial=0
 
 [tx_uhf]
 bit_rate=96000
-deviation=24000
 center_frequency=436.5e6
-channel=0
-path=1
-device_serial=0
